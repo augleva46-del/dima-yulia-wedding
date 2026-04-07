@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Свадебное приглашение</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Общие стили ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+section h2 {
+  margin-bottom: 10px;
+  color: #b08968;
+}
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: #5a4a4a;
+      background: #fffaf9;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+    }
+
+    section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* ===== Первый экран ===== */
+    .hero {
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1520857014576-2c4f4c972b57') center/cover no-repeat;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      letter-spacing: 2px;
+    }
+
+    /* ===== Кнопки ===== */
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(45deg, #e8b4b8, #d4a373);
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    /* ===== Блоки ===== */
+    .fade {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease;
+    }
+
+    .fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .details p {
+      margin: 10px 0;
+    }
+
+    /* ===== Таймер ===== */
+    .timer {
+      font-size: 28px;
+      margin-top: 20px;
+    }
+
+    /* ===== Дресс-код ===== */
+    .palette {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .color {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    /* ===== Форма ===== */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    input, textarea, select {
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      font-family: inherit;
+    }
+
+    /* ===== Адаптив ===== */
+    @media(max-width: 600px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ===== Первый экран ===== -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Дмитрий & Юлия</h1>
+    <p>21 августа 2026</p>
+  </div>
+</section>
+
+<!-- ===== Приглашение ===== -->
+<section class="fade">
+  <div class="container">
+    <h2>Приглашение</h2>
+    <p style="margin-top:20px;">
+      Мы будем счастливы разделить с вами этот особенный день…
+    </p>
+  </div>
+</section>
+
+<!-- ===== Детали ===== -->
+<section class="fade details">
+  <div class="container">
+    <h2>Детали мероприятия</h2>
+    <p><strong>Дата:</strong> 21.08.2026</p>
+    <p><strong>Площадка:</strong> Magic Moon</p>
+    <p><strong>Адрес:</strong> Весенняя ул., 82, Тихая Слобода</p>
+    <a class="btn" href="https://yandex.ru/maps/org/moon_magic/150379280374?si=radhg224wukupfkt0ugcrq9rag" target="_blank">
+      Открыть на карте
+    </a>
+  </div>
+</section>
+
+<!-- ===== Таймер ===== -->
+<section class="fade">
+  <div class="container">
+    <h2>До свадьбы осталось</h2>
+    <div class="timer" id="timer"></div>
+  </div>
+</section>
+
+<!-- ===== Дресс-код ===== -->
+<section class="fade">
+  <div class="container">
+    <h2>Дресс-код</h2>
+    <p>Будем рады видеть вас в нежных пастельных оттенках</p>
+
+    <div class="palette">
+      <div class="color" style="background:#f8c8dc;"></div>
+      <div class="color" style="background:#f5e6da;"></div>
+      <div class="color" style="background:#ffffff; border:1px solid #ddd;"></div>
+      <div class="color" style="background:#d4a373;"></div>
+    </div>
+  </div>
+</section>
+<!-- ===== Дополнительные детали ===== -->
+<section class="fade">
+  <div class="container">
+    <h2>Детали</h2>
+    <p style="margin-top:20px; font-size:18px; line-height:1.6;">
+      Пожалуйста, не дарите цветы 🌸<br>
+      Ваше присутствие — лучший подарок
+    </p>
+  </div>
+</section>
+<!-- ===== RSVP ===== -->
+<section class="fade">
+  <div class="container">
+    <h2>Подтверждение присутствия</h2>
+
+    <form>
+      <input type="text" placeholder="Ваше имя" required>
+
+      <select required>
+        <option value="">Будете ли присутствовать?</option>
+        <option>Да</option>
+        <option>Нет</option>
+      </select>
+
+      <textarea placeholder="Комментарий"></textarea>
+
+      <button class="btn" type="submit">Отправить</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===== Финал ===== -->
+<section class="fade">
+  <div class="container">
+    <h2>Ждём вас с любовью</h2>
+    <p style="margin-top:10px;">Дмитрий & Юлия</p>
+  </div>
+</section>
+
+<script>
+  /* ===== Таймер ===== */
+  const weddingDate = new Date("2026-08-21T00:00:00").getTime();
+
+  const timer = setInterval(() => {
+    const now = new Date().getTime();
+    const diff = weddingDate - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / 1000 / 60) % 60);
+
+    document.getElementById("timer").innerHTML =
+      `${days} дн ${hours} ч ${minutes} мин`;
+  }, 1000);
+
+  /* ===== Анимация появления ===== */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  });
+
+  document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+
+  /* ===== Обработка формы (пока заглушка) ===== */
+  document.querySelector("form").addEventListener("submit", e => {
+    e.preventDefault();
+    alert("Спасибо! Мы получили ваш ответ ❤️");
+  });
+</script>
+
+</body>
+</html>
