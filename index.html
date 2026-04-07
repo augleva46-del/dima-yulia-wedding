@@ -1,298 +1,208 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Дмитрий & Юлия</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дмитрий & Юлия</title>
 
-  <!-- Шрифты -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: #fffaf9;
+  color: #4e3f3f;
+}
 
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: #fffaf9;
-      color: #5a4a4a;
-      line-height: 1.6;
-    }
+/* HERO */
+.hero {
+  height: 100vh;
+  background: url('1.jpg') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: relative;
+}
 
-    h1, h2 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 400;
-    }
+.hero::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.4);
+}
 
-    section {
-      padding: 80px 20px;
-      text-align: center;
-    }
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  z-index:2;
+}
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
+/* POLAROID */
+.polaroid-section {
+  padding: 60px 20px;
+  position: relative;
+}
 
-    /* ===== HERO ===== */
-    .hero {
-      height: 100vh;
-      background: url('https://images.unsplash.com/photo-1520857014576-2c4f4c972b57') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      color: white;
-    }
+.polaroid {
+  width: 220px;
+  background: white;
+  padding: 10px 10px 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  position: absolute;
+  transition: 0.5s;
+}
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-    }
+.polaroid img {
+  width: 100%;
+}
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
+.polaroid:hover {
+  transform: scale(1.05) rotate(0deg);
+  z-index: 5;
+}
 
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 15px;
-    }
+/* разные наклоны */
+.p1 { top: 50px; left: 10%; transform: rotate(-8deg); }
+.p2 { top: 200px; right: 10%; transform: rotate(6deg); }
+.p3 { top: 400px; left: 20%; transform: rotate(4deg); }
+.p4 { top: 600px; right: 15%; transform: rotate(-6deg); }
 
-    .hero p {
-      letter-spacing: 3px;
-    }
+/* SECTION */
+.section {
+  padding: 80px 20px;
+  text-align: center;
+}
 
-    /* ===== BUTTON ===== */
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 26px;
-      border-radius: 30px;
-      background: linear-gradient(45deg, #e8b4b8, #d4a373);
-      color: white;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+h2 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 20px;
+}
 
-    .btn:hover {
-      transform: translateY(-3px);
-      opacity: 0.9;
-    }
+/* BUTTON */
+.btn {
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 20px;
+  border-radius:30px;
+  background:#e8b4b8;
+  color:white;
+  text-decoration:none;
+}
 
-    /* ===== FADE ANIMATION ===== */
-    .fade {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 1s ease;
-    }
+/* TIMER */
+.timer {
+  font-size: 26px;
+}
 
-    .fade.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+/* FORM */
+form {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  max-width:400px;
+  margin:0 auto;
+}
 
-    /* ===== DETAILS ===== */
-    .details p {
-      margin: 10px 0;
-    }
+input, select, textarea {
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ddd;
+}
 
-    /* ===== TIMER ===== */
-    .timer {
-      font-size: 28px;
-      margin-top: 20px;
-      font-weight: 500;
-    }
+/* FADE */
+.fade {
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+.fade.visible {
+  opacity:1;
+  transform:translateY(0);
+}
 
-    /* ===== DRESS CODE ===== */
-    .palette {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .color {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    /* ===== EXTRA CARD ===== */
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    }
-
-    /* ===== FORM ===== */
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    input, textarea, select {
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-      font-family: inherit;
-    }
-
-    button {
-      border: none;
-      cursor: pointer;
-    }
-
-    /* ===== MOBILE ===== */
-    @media(max-width: 600px) {
-      .hero h1 {
-        font-size: 32px;
-      }
-    }
-
-  </style>
+/* MOBILE */
+@media(max-width:700px){
+  .polaroid {
+    position: static;
+    margin: 20px auto;
+    transform: rotate(0deg) !important;
+  }
+}
+</style>
 </head>
+
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>Дмитрий & Юлия</h1>
-    <p>21 августа 2026</p>
-  </div>
+<div class="hero">
+  <h1>Дмитрий & Юлия<br>21 августа 2026</h1>
+</div>
+
+<!-- POLAROID -->
+<section class="polaroid-section">
+  <div class="polaroid p1"><img src="IMG_0319.jpg"></div>
+  <div class="polaroid p2"><img src="кольцо.jpg"></div>
+  <div class="polaroid p3"><img src="букет.jpg"></div>
+  <div class="polaroid p4"><img src="1.jpg"></div>
 </section>
 
 <!-- ПРИГЛАШЕНИЕ -->
-<section class="fade">
-  <div class="container">
-    <h2>Приглашение</h2>
-    <p style="margin-top:20px;">
-      Мы будем счастливы разделить с вами этот особенный день…
-    </p>
-  </div>
+<section class="section fade">
+  <h2>Приглашение</h2>
+  <p>Мы будем счастливы разделить с вами этот особенный день…</p>
 </section>
 
 <!-- ДЕТАЛИ -->
-<section class="fade details">
-  <div class="container">
-    <h2>Детали мероприятия</h2>
-    <p><strong>Дата:</strong> 21.08.2026</p>
-    <p><strong>Площадка:</strong> Magic Moon</p>
-    <p><strong>Адрес:</strong> Весенняя ул., 82, Тихая Слобода</p>
-    <a class="btn" href="https://yandex.ru/maps/org/moon_magic/150379280374?si=radhg224wukupfkt0ugcrq9rag" target="_blank">
-      Открыть на карте
-    </a>
-  </div>
+<section class="section fade">
+  <h2>Детали</h2>
+  <p>21.08.2026<br>Magic Moon<br>Весенняя 82</p>
+  <a class="btn" href="https://yandex.ru/maps/org/moon_magic/150379280374?si=radhg224wukupfkt0ugcrq9rag">Открыть карту</a>
 </section>
 
 <!-- ТАЙМЕР -->
-<section class="fade">
-  <div class="container">
-    <h2>До свадьбы осталось</h2>
-    <div class="timer" id="timer"></div>
-  </div>
-</section>
-
-<!-- ДРЕСС-КОД -->
-<section class="fade">
-  <div class="container">
-    <h2>Дресс-код</h2>
-    <p>Будем рады видеть вас в нежных пастельных оттенках</p>
-
-    <div class="palette">
-      <div class="color" style="background:#f8c8dc;"></div>
-      <div class="color" style="background:#f5e6da;"></div>
-      <div class="color" style="background:#ffffff; border:1px solid #ddd;"></div>
-      <div class="color" style="background:#d4a373;"></div>
-    </div>
-  </div>
+<section class="section fade">
+  <h2>До свадьбы осталось</h2>
+  <div class="timer" id="timer"></div>
 </section>
 
 <!-- БЕЗ ЦВЕТОВ -->
-<section class="fade">
-  <div class="container">
-    <div class="card">
-      <h2>Детали</h2>
-      <p style="margin-top:15px;">
-        Пожалуйста, не дарите цветы 🌸<br>
-        Ваше присутствие — лучший подарок
-      </p>
-    </div>
-  </div>
+<section class="section fade">
+  <h2>Детали</h2>
+  <p>Пожалуйста, не дарите цветы 🌸<br>Ваше присутствие — лучший подарок</p>
 </section>
 
-<!-- RSVP -->
-<section class="fade">
-  <div class="container">
-    <h2>Подтверждение присутствия</h2>
-
-    <form>
-      <input type="text" placeholder="Ваше имя" required>
-
-      <select required>
-        <option value="">Будете ли присутствовать?</option>
-        <option>Да</option>
-        <option>Нет</option>
-      </select>
-
-      <textarea placeholder="Комментарий"></textarea>
-
-      <button class="btn" type="submit">Отправить</button>
-    </form>
-  </div>
-</section>
-
-<!-- ФИНАЛ -->
-<section class="fade">
-  <div class="container">
-    <h2>Ждём вас с любовью</h2>
-    <p style="margin-top:10px;">Дмитрий & Юлия</p>
-  </div>
+<!-- ФОРМА -->
+<section class="section fade">
+  <h2>Подтверждение</h2>
+  <form>
+    <input placeholder="Имя">
+    <select>
+      <option>Буду</option>
+      <option>Не смогу</option>
+    </select>
+    <textarea placeholder="Комментарий"></textarea>
+    <button class="btn">Отправить</button>
+  </form>
 </section>
 
 <script>
-  // Таймер
-  const weddingDate = new Date("2026-08-21T00:00:00").getTime();
+// TIMER
+const date = new Date("2026-08-21").getTime();
+setInterval(()=>{
+  const now = new Date().getTime();
+  const d = date-now;
+  document.getElementById("timer").innerHTML =
+    Math.floor(d/1000/60/60/24)+" дней";
+},1000);
 
-  setInterval(() => {
-    const now = new Date().getTime();
-    const diff = weddingDate - now;
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / 1000 / 60) % 60);
-
-    document.getElementById("timer").innerHTML =
-      days + " дн " + hours + " ч " + minutes + " мин";
-  }, 1000);
-
-  // Анимация
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
+// ANIMATION
+const obs = new IntersectionObserver(e=>{
+  e.forEach(x=>{
+    if(x.isIntersecting) x.target.classList.add("visible");
   });
-
-  document.querySelectorAll(".fade").forEach(el => observer.observe(el));
-
-  // Форма (заглушка)
-  document.querySelector("form").addEventListener("submit", e => {
-    e.preventDefault();
-    alert("Спасибо! Мы получили ваш ответ ❤️");
-  });
+});
+document.querySelectorAll(".fade").forEach(el=>obs.observe(el));
 </script>
 
 </body>
